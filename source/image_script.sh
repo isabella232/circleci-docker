@@ -13,13 +13,12 @@ export LANG="C"
 
 apt-get update
 apt-get -y upgrade
+apt-get -y dist-upgrade
 
-VERSION=$(curl --fail --silent --location https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-
-curl --fail --silent --location --output /tmp/kubectl https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/linux/amd64/kubectl
-
-chmod +x /tmp/kubectl
-mv --force /tmp/kubectl /usr/local/bin/kubectl
+while read FILE_NAME; do
+    echo "Executing $FILE_NAME"
+    $FILE_NAME
+done < <(find /tmp/ -mindepth 1 -maxdepth 1 -name '*_subscript.sh' | sort)
 
 apt-get -y clean
 apt-get -y autoremove
