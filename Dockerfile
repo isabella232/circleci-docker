@@ -1,19 +1,18 @@
-FROM docker:18.03.0-git
+FROM debian:stretch-slim
 
-RUN set -e; \
-    apk add --no-cache \
-		bash \
-		curl \
-		wget \
-		grep \
-		python3; \
-	python3 -m ensurepip; \
-	rm -r /usr/lib/python*/ensurepip; \
-	pip3 install --upgrade pip docker-compose setuptools pyinstaller; \
-	rm -r /root/.cache; \
-	cd /tmp; \
-	git clone https://github.com/sstephenson/bats.git; \
-	cd ./bats; \
-    ./install.sh /usr/local;
+COPY ./source/debian_script.sh /tmp/
+RUN /tmp/debian_script.sh
 
-CMD ["bash"]
+COPY ./source/docker_script.sh /tmp/
+RUN /tmp/docker_script.sh
+
+COPY ./source/aws_script.sh /tmp/
+RUN /tmp/aws_script.sh
+
+COPY ./source/kubernetes_script.sh /tmp/
+RUN /tmp/kubernetes_script.sh
+
+COPY ./source/docker-entrypoint.sh /
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/bin/bash"]
