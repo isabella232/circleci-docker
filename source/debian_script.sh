@@ -25,7 +25,7 @@ EOF
 apt-get -y update
 apt-get -y upgrade
 apt-get -y dist-upgrade
-apt-get -y --no-install-recommends install ca-certificates procps psmisc iotop iftop lsof mc joe nano vim less telnet rsync curl tcpdump strace zip unzip bzip2 tar dnsutils netcat net-tools ss-dev
+apt-get -y --no-install-recommends install ca-certificates procps psmisc iotop iftop lsof mc joe nano vim less telnet rsync curl tcpdump strace zip unzip bzip2 tar dnsutils netcat net-tools ss-dev iputils-ping inetutils-traceroute
 apt-get -y clean
 apt-get -y autoremove
 apt-get -y autoclean
