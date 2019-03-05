@@ -12,7 +12,6 @@ function CheckVariables()
     done
 }
 
-
 CheckVariables DOCKER_USER DOCKER_PASSWORD
 
 docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
