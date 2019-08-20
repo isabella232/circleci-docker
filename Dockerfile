@@ -1,5 +1,5 @@
 FROM debian:stretch-slim
-
+ 
 COPY ./source/debian_script.sh /tmp/
 RUN /tmp/debian_script.sh
 
