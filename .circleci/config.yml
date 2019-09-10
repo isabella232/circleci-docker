@@ -1,0 +1,33 @@
+version: 2.0
+
+defaults: &defaults
+  working_directory: /workspace/circleci-docker
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: stable
+      - run:
+          name: Build circleci-docker Docker image
+          command: |
+            docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+            docker build --tag integromat/circleci-docker:${CIRCLE_BRANCH} .
+      - deploy:
+          name: Push circleci-docker to Docker registry
+          command: |
+            docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+            docker push "integromat/circleci-docker:${CIRCLE_BRANCH}"
+      - deploy:
+          name: Notify control server
+          command: |
+            curl --insecure "https://control.integromat.cloud:8443/circleci?username=$CIRCLE_PROJECT_USERNAME&repository=$CIRCLE_PROJECT_REPONAME&branch=$CIRCLE_BRANCH&custom_flag=$CUSTOM_FLAG"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          context: org-default
