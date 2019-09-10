@@ -21,10 +21,6 @@ jobs:
           command: |
             docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
             docker push "integromat/circleci-docker:${CIRCLE_BRANCH}"
-      - deploy:
-          name: Notify control server
-          command: |
-            curl --insecure "https://control.integromat.cloud:8443/circleci?username=$CIRCLE_PROJECT_USERNAME&repository=$CIRCLE_PROJECT_REPONAME&branch=$CIRCLE_BRANCH&custom_flag=$CUSTOM_FLAG"
 
 workflows:
   version: 2
