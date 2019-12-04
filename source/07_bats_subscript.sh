@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euox pipefail
+set -euxo pipefail
 IFS=$'\n\t'
 
 cd /tmp
