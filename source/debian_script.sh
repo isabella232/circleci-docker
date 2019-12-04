@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euox pipefail
+set -euxo pipefail
 IFS=$'\n\t'
 
 DEBIAN_VERSION=$(source /etc/os-release ; VERSION="${VERSION#*(}" ; echo "${VERSION%)*}" )
