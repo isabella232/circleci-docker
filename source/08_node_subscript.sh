@@ -35,3 +35,5 @@ cp --remove-destination --recursive --no-dereference --preserve=links "$DIRECTOR
 cp --remove-destination --recursive --no-dereference --preserve=links "$DIRECTORY_NAME/lib"/* /usr/lib
 rm --force --recursive "$DIRECTORY_NAME" "$HOME/.npm"
 
+
+apt-get -y --no-install-recommends install graphicsmagick imagemagick
