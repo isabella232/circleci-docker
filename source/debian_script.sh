@@ -18,8 +18,8 @@ deb http://deb.debian.org/debian/ $DEBIAN_VERSION-updates main contrib non-free
 deb-src http://deb.debian.org/debian/ $DEBIAN_VERSION-updates main contrib non-free
 deb http://deb.debian.org/debian-security $DEBIAN_VERSION/updates main contrib non-free
 deb-src http://deb.debian.org/debian-security $DEBIAN_VERSION/updates main contrib non-free
-deb http://ftp.debian.org/debian $DEBIAN_VERSION-backports main contrib non-free
-deb-src http://ftp.debian.org/debian $DEBIAN_VERSION-backports main contrib non-free
+deb http://deb.debian.org/debian $DEBIAN_VERSION-backports main contrib non-free
+deb-src http://deb.debian.org/debian $DEBIAN_VERSION-backports main contrib non-free
 EOF
 
 apt-get -y update
