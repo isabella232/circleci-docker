@@ -5,7 +5,7 @@ IFS=$'\n\t'
 
 apt-get -y install curl
 
-DOCKER_FILE_NAME=$(curl --fail --silent --location https://download.docker.com/linux/static/stable/x86_64/ | grep -Po '<a.*>\Kdocker-[0-9]+\.[0-9]+\.[0-9].*\.tgz(?=</a>)' | tail -1)
+DOCKER_FILE_NAME=$(curl --fail --silent --location https://download.docker.com/linux/static/stable/x86_64/ | grep -Po '<a.*>\Kdocker-[0-9]+\.[0-9]+\.[0-9].*\.tgz(?=</a>)' | sort --version-sort | tail -1)
 curl --fail --silent --location --output "/tmp/$DOCKER_FILE_NAME" "https://download.docker.com/linux/static/stable/x86_64/$DOCKER_FILE_NAME"
 tar --extract --file "/tmp/$DOCKER_FILE_NAME" --strip-components 1 --directory /usr/local/bin/
 
