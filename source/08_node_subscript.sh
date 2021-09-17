@@ -5,7 +5,7 @@ IFS=$'\n\t'
 
 apt-get -y --no-install-recommends install python2
 
-NODE_VERSION='12'
+NODE_VERSION='14'
 
 DOWNLOAD_URL="https://nodejs.org/dist/latest-v$NODE_VERSION.x/"
 FILE_EXTENSION=".tar.gz"

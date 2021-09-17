@@ -3,7 +3,7 @@
 set -euxo pipefail
 IFS=$'\n\t'
 
-DEBIAN_VERSION=$(source /etc/os-release ; VERSION="${VERSION#*(}" ; echo "${VERSION%)*}" )
+DEBIAN_VERSION=$(source /etc/os-release ; echo "${VERSION_CODENAME}" )
 export INITRD="no"
 export DEBIAN_FRONTEND="noninteractive"
 export DEBCONF_NONINTERACTIVE_SEEN="true"
@@ -12,14 +12,14 @@ export LANGUAGE="C"
 export LANG="C"
 
 cat > /etc/apt/sources.list <<EOF
-deb http://deb.debian.org/debian $DEBIAN_VERSION main contrib non-free
-deb-src http://deb.debian.org/debian $DEBIAN_VERSION main contrib non-free
-deb http://deb.debian.org/debian/ $DEBIAN_VERSION-updates main contrib non-free
-deb-src http://deb.debian.org/debian/ $DEBIAN_VERSION-updates main contrib non-free
-deb http://deb.debian.org/debian-security $DEBIAN_VERSION/updates main contrib non-free
-deb-src http://deb.debian.org/debian-security $DEBIAN_VERSION/updates main contrib non-free
-deb http://deb.debian.org/debian $DEBIAN_VERSION-backports main contrib non-free
-deb-src http://deb.debian.org/debian $DEBIAN_VERSION-backports main contrib non-free
+deb http://deb.debian.org/debian "${DEBIAN_VERSION}" main contrib non-free
+deb-src http://deb.debian.org/debian "${DEBIAN_VERSION}" main contrib non-free
+deb http://deb.debian.org/debian/ "${DEBIAN_VERSION}-updates" main contrib non-free
+deb-src http://deb.debian.org/debian/ "${DEBIAN_VERSION}-updates" main contrib non-free
+deb http://security.debian.org/debian-security "${DEBIAN_VERSION}-security" main contrib non-free
+deb-src http://security.debian.org/debian-security "${DEBIAN_VERSION}-security" main contrib non-free
+deb http://deb.debian.org/debian "${DEBIAN_VERSION}-backports" main contrib non-free
+deb-src http://deb.debian.org/debian "${DEBIAN_VERSION}-backports" main contrib non-free
 EOF
 
 apt-get -y update

@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
  
 COPY ./source/debian_script.sh /tmp/
 RUN /tmp/debian_script.sh
