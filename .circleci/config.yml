@@ -5,11 +5,11 @@ jobs:
     working_directory: /workspace/circleci-docker
     docker:
       - image: docker:latest
-    resource_class: medium
+    resource_class: small
     steps:
       - checkout
       - setup_remote_docker:
-          version: stable
+          version: 19.03.13
       - run:
           name: Build circleci-docker Docker image
           command: |
