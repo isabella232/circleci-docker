@@ -1,13 +1,10 @@
 version: 2.0
 
-defaults: &defaults
-  working_directory: /workspace/circleci-docker
-  docker:
-    - image: docker:latest
-
 jobs:
   build:
-    <<: *defaults
+    working_directory: /workspace/circleci-docker
+    docker:
+      - image: docker:latest
     resource_class: small
     steps:
       - checkout
