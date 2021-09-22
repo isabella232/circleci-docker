@@ -5,7 +5,7 @@ jobs:
     working_directory: /workspace/circleci-docker
     docker:
       - image: docker:latest
-    resource_class: small
+    resource_class: medium
     steps:
       - checkout
       - setup_remote_docker:
